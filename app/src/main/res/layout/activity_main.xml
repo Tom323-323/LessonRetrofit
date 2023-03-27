@@ -6,81 +6,17 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/tv_firsName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="32sp"
-        android:textStyle="bold"
-        android:text="FirstName"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/img_avatar"
-        app:layout_constraintStart_toStartOf="@+id/img_avatar"
-        app:layout_constraintTop_toBottomOf="@+id/img_avatar"
-        app:layout_constraintVertical_bias="0.118" />
-
-    <Button
-        android:id="@+id/btn"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="16dp"
-        android:text="sign in"
-        android:textSize="23sp"
-        app:layout_constraintEnd_toEndOf="@+id/tv_firsName"
-        app:layout_constraintStart_toStartOf="@+id/tv_firsName"
-        app:layout_constraintTop_toBottomOf="@+id/ed_password" />
-
-    <ImageView
-        android:id="@+id/img_avatar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="72dp"
+        android:layout_height="match_parent"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="24dp"
+        android:background="#836262"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/avatars" />
-
-    <TextView
-        android:id="@+id/tv_lastName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="LastName"
-        android:textSize="34sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/tv_firsName"
-        app:layout_constraintStart_toStartOf="@+id/tv_firsName"
-        app:layout_constraintTop_toBottomOf="@+id/tv_firsName" />
-
-    <EditText
-        android:id="@+id/ed_login"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:ems="10"
-        android:hint="Login"
-        android:inputType="textPersonName"
-        android:textColorHint="#867E7575"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="@+id/tv_lastName"
-        app:layout_constraintStart_toStartOf="@+id/tv_lastName"
-        app:layout_constraintTop_toBottomOf="@+id/tv_lastName" />
-
-    <EditText
-        android:id="@+id/ed_password"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:ems="10"
-        android:hint="Password"
-        android:inputType="textPassword"
-        android:textColorHint="#867E7575"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="@+id/ed_login"
-        app:layout_constraintStart_toStartOf="@+id/ed_login"
-        app:layout_constraintTop_toBottomOf="@+id/ed_login" />
-
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

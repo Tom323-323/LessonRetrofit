@@ -2,10 +2,10 @@ package com.example.lessonretrofit
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.lessonretrofit.adapter.RvAdapter
 import com.example.lessonretrofit.databinding.ActivityMainBinding
-import com.example.lessonretrofit.retrofit.AuthRequest
 import com.example.lessonretrofit.retrofit.MainApi
-import com.squareup.picasso.Picasso
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -16,11 +16,16 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var adapter: RvAdapter
     lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        adapter = RvAdapter()
+        binding.rcView.layoutManager = LinearLayoutManager(this)
+        binding.rcView.adapter = adapter
 
         val httpLoggingInterceptor = HttpLoggingInterceptor()
 
@@ -36,23 +41,13 @@ class MainActivity : AppCompatActivity() {
             .addConverterFactory(GsonConverterFactory.create()).build()
         val mainApi = retrofit.create(MainApi::class.java)
 
-
-        binding.btn.setOnClickListener {
             CoroutineScope(Dispatchers.IO).launch {
-                val user = mainApi.auth(
-                    AuthRequest(
-                        binding.edLogin.text.toString(),
-                        binding.edPassword.text.toString()
-                    )
-                )
+                val list = mainApi.getAllProducts()
                     runOnUiThread {
                         binding.apply {
-                            Picasso.get().load(user.image).into(imgAvatar)
-                            tvFirsName.text = user.firstName
-                            tvLastName.text = user.lastName
+                            adapter.submitList(list.products)
                         }
                     }
             }
-        }
     }
 }
