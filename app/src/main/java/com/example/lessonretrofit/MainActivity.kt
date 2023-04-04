@@ -6,7 +6,9 @@ import android.widget.SearchView.OnQueryTextListener
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.lessonretrofit.adapter.RvAdapter
 import com.example.lessonretrofit.databinding.ActivityMainBinding
+import com.example.lessonretrofit.retrofit.AuthRequest
 import com.example.lessonretrofit.retrofit.MainApi
+import com.example.lessonretrofit.retrofit.User
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -24,6 +26,8 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
+        supportActionBar?.title = "Guest"
         adapter = RvAdapter()
         binding.rcView.layoutManager = LinearLayoutManager(this)
         binding.rcView.adapter = adapter
@@ -43,21 +47,36 @@ class MainActivity : AppCompatActivity() {
         val mainApi = retrofit.create(MainApi::class.java)
 
 
+        var user: User? = null
+        CoroutineScope(Dispatchers.IO).launch {
+            user = mainApi.auth(
+                AuthRequest(
+                    "kminchelle",
+                    "0lelplR"
+                )
+            )
+            runOnUiThread {
+                supportActionBar?.title = user?.firstName
+            }
+        }
+
+
+
         binding.searchView.setOnQueryTextListener(object :OnQueryTextListener{
             override fun onQueryTextSubmit(text: String?): Boolean {
-
-                return true
-            }
-
-            override fun onQueryTextChange(text: String?): Boolean {
                 CoroutineScope(Dispatchers.IO).launch {
-                    val list = text?.let { mainApi.getProductsByName(it) }
+                    val list = text?.let { mainApi.getProductsByNameAuth( user?.token?:"",it) }
                     runOnUiThread {
                         binding.apply {
                             adapter.submitList(list?.products)
                         }
                     }
                 }
+                return true
+            }
+
+            override fun onQueryTextChange(text: String?): Boolean {
+
                 return true
             }
 
