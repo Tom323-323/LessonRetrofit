@@ -26,8 +26,8 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
         supportActionBar?.title = "Guest"
+
         adapter = RvAdapter()
         binding.rcView.layoutManager = LinearLayoutManager(this)
         binding.rcView.adapter = adapter
