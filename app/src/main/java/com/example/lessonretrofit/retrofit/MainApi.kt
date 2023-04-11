@@ -1,5 +1,6 @@
 package com.example.lessonretrofit.retrofit
 
+import retrofit2.Response
 import retrofit2.http.*
 
 interface MainApi {
@@ -7,10 +8,11 @@ interface MainApi {
     suspend fun getProductById(@Path("id") id:Int): Product
 
     @POST("auth/login")
-    suspend fun auth(@Body authRequest: AuthRequest): User
+    suspend fun auth(@Body authRequest: AuthRequest): Response<User>
 
+    @Headers("Content_Type: application/json")
     @GET("auth/products")
-    suspend fun getAllProducts():Products
+    suspend fun getAllProducts(@Header("Authorization") token: String):Products
 
     @GET("auth/products/search")
     suspend fun getProductsByName(@Query ("q") name:String):Products

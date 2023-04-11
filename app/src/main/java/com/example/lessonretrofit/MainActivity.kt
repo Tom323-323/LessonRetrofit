@@ -48,17 +48,17 @@ class MainActivity : AppCompatActivity() {
 
 
         var user: User? = null
-        CoroutineScope(Dispatchers.IO).launch {
-            user = mainApi.auth(
-                AuthRequest(
-                    "kminchelle",
-                    "0lelplR"
-                )
-            )
-            runOnUiThread {
-                supportActionBar?.title = user?.firstName
-            }
-        }
+//        CoroutineScope(Dispatchers.IO).launch {
+//            user = mainApi.auth(
+//                AuthRequest(
+//                    "kminchelle",
+//                    "0lelplR"
+//                )
+//            )
+//            runOnUiThread {
+//                supportActionBar?.title = user?.firstName
+//            }
+//        }
 
 
 
