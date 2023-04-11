@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.lessonretrofit.adapter.RvAdapter
 import com.example.lessonretrofit.databinding.FragmentProductsBinding
@@ -14,7 +13,6 @@ import com.example.lessonretrofit.retrofit.MainApi
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import okhttp3.Dispatcher
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -48,7 +46,6 @@ class ProductsFragment : Fragment() {
             }
         }
     }
-
 
     private fun initRetrofit(){
         val httpLoggingInterceptor = HttpLoggingInterceptor()

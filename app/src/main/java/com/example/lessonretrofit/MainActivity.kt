@@ -1,12 +1,11 @@
 package com.example.lessonretrofit
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.SearchView.OnQueryTextListener
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.lessonretrofit.adapter.RvAdapter
 import com.example.lessonretrofit.databinding.ActivityMainBinding
-import com.example.lessonretrofit.retrofit.AuthRequest
 import com.example.lessonretrofit.retrofit.MainApi
 import com.example.lessonretrofit.retrofit.User
 import kotlinx.coroutines.CoroutineScope
